@@ -1,2 +1,30 @@
+## No directory listings
+<IfModule mod_autoindex.c>
+  IndexIgnore *
+</IfModule>
+
+## No-Referrer-Header
+<IfModule mod_headers.c>
+  Header set Referrer-Policy "no-referrer"
+</IfModule>
+
+## Suppress mime type detection in browsers for unknown types and prevent FLOC
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Permissions-Policy "interest-cohort=()"
+</IfModule>
+
+## Can be commented out if causes errors, see notes above.
+Options +FollowSymlinks
+
+## Prevent Directory listing
+Options -Indexes
+
+## SEO URL Settings
 RewriteEngine On
-RewriteRule ^([^?]*) index.php?route=$1 [L,QSA]
+## Rewrite Rules
+RewriteRule ^system/(.*) index.php?route=error/not_found [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !.*\.(ico|gif|jpg|jpeg|png|webp|js|css|svg)
+RewriteRule ^([^?]*) index.php?_route_=$1 [L,QSA]
