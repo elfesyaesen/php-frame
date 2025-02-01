@@ -14,17 +14,11 @@
   Header always set Permissions-Policy "interest-cohort=()"
 </IfModule>
 
-## Can be commented out if causes errors, see notes above.
 Options +FollowSymlinks
-
-## Prevent Directory listing
 Options -Indexes
-
-## SEO URL Settings
 RewriteEngine On
-## Rewrite Rules
 RewriteRule ^system/(.*) index.php?route=error/not_found [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} !.*\.(ico|gif|jpg|jpeg|png|webp|js|css|svg)
-RewriteRule ^([^?]*) index.php?_route_=$1 [L,QSA]
+RewriteRule ^([^?]*) index.php?route=$1 [L,QSA]
