@@ -49,7 +49,9 @@ class Router
     {
         $currentGroup = end($this->groups) ?: [];
         $prefix = $currentGroup['prefix'] ?? '';
+
         $uri = $prefix ? rtrim($prefix, '/') . '/' . ltrim($uri, '/') : $uri;
+        $uri = '/' . trim($uri, '/');
 
         $groupMiddleware = $currentGroup['middleware'] ?? [];
         $routeMiddleware = $action['middleware'] ?? [];
@@ -66,6 +68,7 @@ class Router
 
         return $this;
     }
+
 
     public function name(string $name): self
     {
@@ -95,7 +98,7 @@ class Router
 
     public function dispatch(string $uri, string $method): void
     {
-        $uri = str_replace([basename($_SERVER['SCRIPT_NAME']), dirname($_SERVER['SCRIPT_NAME'])], '',$_SERVER['REQUEST_URI']);
+        $uri = str_replace([basename($_SERVER['SCRIPT_NAME']), dirname($_SERVER['SCRIPT_NAME'])], '', $_SERVER['REQUEST_URI']);
         $route = $this->findRoute($uri, $method);
 
         if ($route) {
