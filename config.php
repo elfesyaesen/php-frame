@@ -2,13 +2,10 @@
 session_start(); ob_start();
 $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
 $host = $_SERVER['HTTP_HOST'];
-$base_url = $protocol . '://' . $host . '/';
+$base_url = $protocol . '://' . $host .'/' . basename(getcwd());
 
-//site name 
 define('APP_URL', $base_url);
-
 define('APP_ROOT', dirname(__FILE__));
-define('APP_SUBFOLDER', '/php-frame');
 define('DB_HOST', 'localhost');
 define('DB_USER', '');
 define('DB_PASS', '');
