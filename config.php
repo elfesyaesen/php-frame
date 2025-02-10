@@ -1,8 +1,11 @@
 <?php
-session_start(); ob_start();
-$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+session_start();
+ob_start();
+
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https" : "http";
 $host = $_SERVER['HTTP_HOST'];
-$base_url = $protocol . '://' . $host .'/' . basename(getcwd());
+$scriptPath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
+$base_url = $protocol . "://" . $host . ($scriptPath === '/' ? '' : $scriptPath);
 
 define('APP_URL', $base_url);
 define('APP_ROOT', dirname(__FILE__));
