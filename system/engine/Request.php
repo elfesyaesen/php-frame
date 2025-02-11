@@ -95,6 +95,7 @@ trait Request
             }
         } else {
             $data = htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
+            $data = stripslashes($data);
         }
         return $data;
     }
