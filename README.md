@@ -13,7 +13,7 @@ Modern ve hafif bir PHP framework'üdür. Kolayca genişletilebilir ve özelleş
 
 ## **Lisans**
 
-Bu proje [MIT Lisansı](LICENSE) altında lisanslanmıştır. 
+Bu proje [MIT Lisansı](https://opensource.org/license/MIT) altında lisanslanmıştır. 
 
 ---
 
