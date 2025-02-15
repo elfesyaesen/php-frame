@@ -70,7 +70,7 @@ trait Request
                 return $_POST + ['files' => $_FILES];
             } else {
                 return $_POST;
-            }            
+            }
         }
 
         return [];
@@ -89,6 +89,20 @@ trait Request
         return $data;
     }
 
+    public function slug(string $string, string $separator = '-'): string
+    {
+        $string = str_replace(
+            ['ı', 'ğ', 'ü', 'ş', 'i', 'ö', 'ç', 'İ', 'Ğ', 'Ü', 'Ş', 'İ', 'Ö', 'Ç'],
+            ['i', 'g', 'u', 's', 'i', 'o', 'c', 'i', 'g', 'u', 's', 'i', 'o', 'c'],
+            $string
+        );
+        $string = mb_strtolower($string, 'UTF-8');
+        $string = preg_replace('/[^a-z0-9\-]/', $separator, $string);
+        $string = preg_replace('/' . preg_quote($separator, '/') . '+/', $separator, $string);
+        $string = trim($string, $separator);
+        return $string;
+    }
+    
     private function errorResponse(string $key): never
     {
         http_response_code(400);
