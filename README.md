@@ -4,7 +4,7 @@ Modern ve hafif bir PHP framework'üdür. Kolayca genişletilebilir ve özelleş
 
 ---
 
-## **Özellikler**
+## **Özellikler** 
 
 - **Hafif ve Hızlı:** Minimal yapısıyla yüksek performans sunar.
 - **Esnek Routing:** Gelişmiş routing sistemi ile kolayca route tanımlayabilirsiniz.
