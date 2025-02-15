@@ -12,17 +12,6 @@ trait Request
     private array $put;
     private array $patch;
 
-    public function __construct()
-    {
-        $this->server = $this->sanitize($_SERVER);
-        $this->headers = $this->getHeaders();
-        $this->get = $this->sanitize($_GET);
-        $this->post = $this->sanitize($this->parseInput('POST'));
-        $this->put = $this->sanitize($this->parseInput('PUT'));
-        $this->patch = $this->sanitize($this->parseInput('PATCH'));
-        $this->files = $this->sanitize($_FILES);
-    }
-
     public function server(string $key): mixed
     {
         return $this->server[$key] ?? $this->errorResponse($key);
