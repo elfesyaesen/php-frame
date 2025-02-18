@@ -16,14 +16,6 @@ class Controller
         } else {
             $this->data["csrf"] = $_SESSION["csrf"] = bin2hex(random_bytes(16));
         }
-
-        $this->server = $this->sanitize($_SERVER);
-        $this->headers = $this->getHeaders();
-        $this->get = $this->sanitize($_GET);
-        $this->post = $this->sanitize($this->parseInput('POST'));
-        $this->put = $this->sanitize($this->parseInput('PUT'));
-        $this->patch = $this->sanitize($this->parseInput('PATCH'));
-        $this->files = $this->sanitize($_FILES);
     }
 
     public function view(string $path, array $data = []): void
